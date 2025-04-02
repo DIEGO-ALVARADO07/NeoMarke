@@ -6,20 +6,19 @@ using System.Threading.Tasks;
 
 namespace Entity.Model
 {
-    class User
+    public class User
     {
-        public int id_user { get; set; }
-        public string name { get; set; }
-        public string email { get; set; }
-        public string password { get; set; }
-        public DateTime createAt { get; set; }
-        public DateTime deleteAt { get; set; }
-        public DateTime updateAt { get; set; }
-        public bool status { get; set; }
-        public int id_person { get; set; }
-        public Person person { get; set; }
-        public int id_rol { get; set; }
-        public Rol rol { get; set; }
+        public int Id { get; set; }
+        public string Username { get; set; } = string.Empty;
+        public string Password { get; set; } = string.Empty;
+        public DateTime CreateAt { get; set; } = DateTime.Now;
+        public DateTime DeleteAt { get; set; }
+        public DateTime UpdateAt { get; set; }
+        public bool Status { get; set; }
+        public int Id_person { get; set; }
+        public required Person Person { get; set; }
+        public int Id_rol { get; set; }
+        public required Rol Rol { get; set; }
 
 
     }

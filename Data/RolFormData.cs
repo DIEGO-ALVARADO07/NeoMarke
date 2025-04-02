@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Security.Principal;
+using Entity.Model;
 
 
 public async Task<bool> UpdateAAsync(RolForm rolform)

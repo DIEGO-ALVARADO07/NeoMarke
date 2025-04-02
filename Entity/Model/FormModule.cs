@@ -8,7 +8,8 @@ namespace Entity.Model
 {
     class FormModule
     {
-        public int id_formModule {  get; set; }
+        public int Id {  get; set; }
+        public bool status { get; set; }
 
     }
 }
