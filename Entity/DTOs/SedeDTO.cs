@@ -6,17 +6,17 @@ using System.Threading.Tasks;
 
 namespace Entity.DTOs
 {
-    class SedeDTO
+    public class SedeDTO
     {
-        public int id { get; set; }
-        public string name { get; set; }
-        public string code_sede { get; set; }
-        public string address { get; set; }
-        public int phone_sede { get; set; }
-        public string email_sede { get; set; }
-        public string status { get; set; }
-        public string createAt { get; set; }
-        public string deleteAt { get; set; }
-        public string update_date { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; } = string.Empty;
+        public string Code_sede { get; set; } = string.Empty;
+        public string Address { get; set; } = string.Empty;
+        public int Phone_sede { get; set; }
+        public string Email_sede { get; set; } = string.Empty;
+        public string Status { get; set; } = string.Empty;
+        public string CreateAt { get; set; } = string.Empty;
+        public string DeleteAt { get; set; } = string.Empty;
+        public string Update_date { get; set; } = string.Empty;
     }
 }

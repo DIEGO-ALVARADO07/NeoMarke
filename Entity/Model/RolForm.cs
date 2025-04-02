@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace Entity.Model
 {
-    class RolForm
+    public class RolForm
     {
-        public int id_rolForm { get; set; }
-        public Permision permision { get; set; }
-        public int id_rol { get; set; }
-        public Rol rol { get; set; }
-        public int id_form { get; set; }
-        public Form form { get; set; }
+        public int Id { get; set; }
+        public Permision Permision { get; set; }
+        public int Id_rol { get; set; }
+        public required Rol Rol { get; set; }
+        public int Id_form { get; set; }
+        public required Form Form { get; set; }
 
     }
 }

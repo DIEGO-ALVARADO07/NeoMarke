@@ -2,7 +2,7 @@
 using System.Security.Principal;
 
 
-public async Task<bool> UpdateAAsync(Module module)
+public async Task<bool> UpdateAsync(Module module)
 {
     try
     {

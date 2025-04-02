@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace Entity.Model
 {
-    class Rol
+    public class Rol
     {
-        public int id_rol { get; set; }
-        public string name_rol { get; set; }
-        public string description { get; set; }
-        public bool status { get; set; }
-        public int id_rolForm { get; set; }
-        public RolForm rolForm { get; set; }
-        public int id_user { get; set; }
-        public User user { get; set; }
+        public int Id { get; set; }
+        public required string Name_rol { get; set; }
+        public required string Description { get; set; }
+        public bool Status { get; set; }
+        public int Id_rolForm { get; set; }
+        public required RolForm RolForm { get; set; }
+        public int Id_user { get; set; }
+        public required User User { get; set; }
 
     }
 }

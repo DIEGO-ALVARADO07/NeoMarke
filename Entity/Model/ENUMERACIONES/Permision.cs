@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Entity.Model.ENUMERACIONES
 {
-    enum Permision
+    public enum Permision
     { 
         LOGINUP,
         SIGNUP,
