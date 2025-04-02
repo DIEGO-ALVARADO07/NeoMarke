@@ -9,11 +9,9 @@ namespace Entity.Model
     public class Rol
     {
         public int Id { get; set; }
-        public required string Name_rol { get; set; }
-        public required string Description { get; set; }
+        public string Name_rol { get; set; } = string.Empty;
+        public string Description { get; set; } = string.Empty;
         public bool Status { get; set; }
-        public int Id_rolForm { get; set; }
-        public required RolForm RolForm { get; set; }
         public int Id_user { get; set; }
         public required User User { get; set; }
 

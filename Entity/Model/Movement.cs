@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace Entity.Model
 {
-    public class Form
+    public class Movement
     {
         public int Id { get; set; }
-        public string Name_Form { get; set; } = string.Empty;
+        public string Type_Movement { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
+        public DateTime CreatedAt { get; set; }
+        public DateTime DeletedAt { get; set; }
+        public DateTime UpdatedAt { get; set; }
         public bool Status { get; set; }
-
-
-
     }
 }

@@ -93,6 +93,7 @@
             <End Role="Company" EntitySet="CompanySet" />
             <End Role="User" EntitySet="UserSet" />
           </AssociationSet>
+          <EntitySet Name="Times_ChangesSet" EntityType="Model1.Times_Changes" />
         </EntityContainer>
         <EntityType Name="Form">
           <Key>
@@ -155,14 +156,15 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="username" Type="String" Nullable="false" />
           <Property Name="password" Type="String" Nullable="false" />
-          <Property Name="createAt" Type="String" Nullable="false" />
-          <Property Name="deleteAt" Type="String" Nullable="false" />
+          <Property Name="createAt" Nullable="false" Type="String" />
+          <Property Name="deleteAt" Nullable="false" Type="String" />
           <Property Name="status" Type="String" Nullable="false" />
-          <Property Name="update_date" Type="String" Nullable="false" />
+          <Property Name="update_date" Nullable="false" Type="String" />
           <NavigationProperty Name="Rol" Relationship="Model1.UserRol" FromRole="User" ToRole="Rol" />
           <NavigationProperty Name="Inventory" Relationship="Model1.UserInventory" FromRole="User" ToRole="Inventory" />
           <NavigationProperty Name="Person" Relationship="Model1.UserPerson" FromRole="User" ToRole="Person" />
           <NavigationProperty Name="Company" Relationship="Model1.CompanyUser" FromRole="User" ToRole="Company" />
+          <Property Name="CompanyId" Type="String" Nullable="false" />
         </EntityType>
         <EntityType Name="Person">
           <Key>
@@ -183,9 +185,9 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" Nullable="false" />
+          <Property Name="name_sede" Type="String" Nullable="false" />
           <Property Name="code_sede" Type="Int64" Nullable="false" />
-          <Property Name="address" Type="String" Nullable="false" />
+          <Property Name="address_sede" Type="String" Nullable="false" />
           <Property Name="phone_sede" Type="Int16" Nullable="false" />
           <Property Name="email_sede" Type="String" Nullable="false" />
           <Property Name="status" Type="Boolean" Nullable="false" />
@@ -206,12 +208,12 @@
           <Property Name="description" Type="String" Nullable="false" />
           <Property Name="name_company" Type="String" Nullable="false" />
           <Property Name="phone_company" Type="Int16" Nullable="false" />
-          <Property Name="locality" Type="String" Nullable="false" />
           <Property Name="email_company" Type="String" Nullable="false" />
           <Property Name="nit_company" Type="Int16" Nullable="false" />
           <Property Name="status" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Sede" Relationship="Model1.CompanySede" FromRole="Company" ToRole="Sede" />
           <NavigationProperty Name="User" Relationship="Model1.CompanyUser" FromRole="Company" ToRole="User" />
+          <Property Name="Logo" Type="String" Nullable="false" />
         </EntityType>
         <EntityType Name="Item">
           <Key>
@@ -246,12 +248,12 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="statusPrevious" Type="String" Nullable="false" />
-          <Property Name="statusNew" Type="String" Nullable="false" />
+          <Property Name="status" Type="String" Nullable="false" />
           <Property Name="observations" Type="String" Nullable="false" />
           <Property Name="createAt" Type="String" Nullable="false" />
           <Property Name="deleteAt" Type="String" Nullable="false" />
-          <Property Name="description" Type="String" Nullable="false" />
+          <Property Name="updateAt" Type="String" Nullable="false" />
+          <Property Name="description_inventory" Type="String" Nullable="false" />
           <Property Name="zone_item" Type="String" Nullable="false" />
           <NavigationProperty Name="User" Relationship="Model1.UserInventory" FromRole="Inventory" ToRole="User" />
           <Property Name="UserId" Type="Int32" Nullable="false" />
@@ -272,14 +274,11 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="create" Type="String" Nullable="false" />
-          <Property Name="delete" Type="String" Nullable="false" />
+          <Property Name="type_moviment" Type="String" Nullable="false" />
           <Property Name="description" Type="String" Nullable="false" />
-          <Property Name="update" Type="String" Nullable="false" />
           <Property Name="dateCreate" Type="String" Nullable="false" />
           <Property Name="dateDelete" Type="String" Nullable="false" />
           <Property Name="dateUpdate" Type="String" Nullable="false" />
-          <Property Name="Item_id_item" Type="Int32" Nullable="false" />
           <Property Name="status" Type="String" Nullable="false" />
           <NavigationProperty Name="MovimientoItemInventory" Relationship="Model1.MoviemientoMovimientoItemInventory" FromRole="Moviemiento" ToRole="MovimientoItemInventory" />
         </EntityType>
@@ -288,14 +287,13 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="typhe_change" Type="String" Nullable="false" />
-          <Property Name="description_change" Type="String" Nullable="false" />
           <NavigationProperty Name="Item" Relationship="Model1.ItemMovimientoItemInventory" FromRole="MovimientoItemInventory" ToRole="Item" />
-          <Property Name="ItemId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Inventory" Relationship="Model1.InventoryMovimientoItemInventory" FromRole="MovimientoItemInventory" ToRole="Inventory" />
+          <Property Name="quantity" Type="Int32" Nullable="false" />
           <Property Name="InventoryId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Moviemiento" Relationship="Model1.MoviemientoMovimientoItemInventory" FromRole="MovimientoItemInventory" ToRole="Moviemiento" />
           <Property Name="MoviemientoId" Type="Int32" Nullable="false" />
+          <Property Name="ItemId" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Permision">
           <Key>
@@ -361,7 +359,7 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="MovimientoItemInventory">
-              <PropertyRef Name="InventoryId" />
+              <PropertyRef Name="quantity" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -457,6 +455,12 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Times_Changes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
