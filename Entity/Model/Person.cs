@@ -9,10 +9,10 @@ namespace Entity.Model
     public class Person
     {
         public int Id { get; set; }
-        public required string First_name { get; set; }
-        public required string Last_name { get; set; }
-        public required string Email { get; set; }
-        public required string Phone { get; set; }
+        public string First_name { get; set; } = string.Empty;
+        public string Last_name { get; set; } = string.Empty;
+        public string Email { get; set; } = string.Empty;
+        public string Phone { get; set; } = string.Empty;
         public type_identification Type { get; set; }
         public int Number_identification { get; set; }
         public bool Status { get; set; }

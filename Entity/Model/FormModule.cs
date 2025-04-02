@@ -9,7 +9,12 @@ namespace Entity.Model
     class FormModule
     {
         public int Id {  get; set; }
-        public bool status { get; set; }
+        public bool Status { get; set; }
+        public int Id_form { get; set; }
+        public required Form Form { get; set; } // SIN INICIALIZAR, EVITA QUE SE CARGUE EN MEMORIA
+        public int Id_module { get; set; }
+        public required Module Module { get; set; } // SIN INICIALIZAR, EVITA QUE SE CARGUE EN MEMORIA
+
 
     }
 }

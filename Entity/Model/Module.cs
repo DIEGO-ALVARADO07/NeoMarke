@@ -9,9 +9,9 @@ namespace Entity.Model
 {
     class Module
     {
-       public int id_module { get; set; }
-        public string name_module { get; set; }
-        public bool status { get; set; }
+       public int Id_module { get; set; }
+        public string Name_Module { get; set; } = string.Empty;
+        public bool Status { get; set; }
 
     }
 }

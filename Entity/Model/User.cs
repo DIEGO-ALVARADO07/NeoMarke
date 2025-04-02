@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 namespace Entity.Model
 {
     public class User
@@ -19,7 +18,7 @@ namespace Entity.Model
         public required Person Person { get; set; }
         public int Id_rol { get; set; }
         public required Rol Rol { get; set; }
-
-
+        public int Id_company { get; set; }
+        public required Company Company { get; set; }
     }
 }
