@@ -11,8 +11,7 @@ namespace Entity.DTOs
         public int Id { get; set; }
         public string Username { get; set; } = string.Empty;
         public string Password { get; set; } = string.Empty;
-        public string CreatedAt { get; set; } = string.Empty;
-        public string DeletedAt { get; set; } = string.Empty;
         public bool Status { get; set; } 
+        public string NameCompany { get; set; } = string.Empty;
     }
 }

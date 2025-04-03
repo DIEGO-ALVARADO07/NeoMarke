@@ -15,9 +15,11 @@ namespace Entity.Model
         public DateTime DeleteAt { get; set; }
         public DateTime UpdateAt { get; set; }
         public bool Status { get; set; }
-        public int Id_inventory { get; set; }
+        public int IdInventory { get; set; }
         public required Inventory Inventory { get; set; }
-        public int Id_category { get; set; }
+        public int IdCategory { get; set; }
         public required Category Category { get; set; }
+        public int IdImageItem { get; set; }
+        public required ImageItem ImageItems { get; set; }
     }
 }

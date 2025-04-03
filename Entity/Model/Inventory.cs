@@ -10,13 +10,13 @@ namespace Entity.Model
     {
         public int Id { get; set; }
         public bool Status { get; set; }
-        public string Description_Inventory { get; set; } = string.Empty;
+        public string DescriptionInventory { get; set; } = string.Empty;
         public string Observation { get; set; } = string.Empty;
-        public string Zone_item { get; set; } = string.Empty;
+        public string ZoneItem { get; set; } = string.Empty;
         public DateTime CreatedAt { get; set; }
         public DateTime DeletedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
-        public int Id_user { get; set; }
+        public int IdUser { get; set; }
         public required User User { get; set; }
 
 

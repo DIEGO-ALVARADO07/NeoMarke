@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace Entity.Model
 {
-    class Module
+    public class Module
     {
-       public int Id_module { get; set; }
-        public string Name_Module { get; set; } = string.Empty;
+        public int IdModule { get; set; }
+        public string NameModule { get; set; } = string.Empty;
         public bool Status { get; set; }
 
     }

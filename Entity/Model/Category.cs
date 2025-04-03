@@ -11,7 +11,7 @@ namespace Entity.Model
         public int Id { get; set; }
         public string Name { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
-        public int Id_item { get; set; }
+        public int IdItem { get; set; }
         public required Item Item { get; set; }
 
     }
