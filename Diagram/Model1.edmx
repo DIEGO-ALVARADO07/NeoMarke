@@ -28,7 +28,6 @@
           <EntitySet Name="CategorySet" EntityType="Model1.Category" />
           <EntitySet Name="Moviemientos" EntityType="Model1.Moviemiento" />
           <EntitySet Name="MovimientoItemInventorySet" EntityType="Model1.MovimientoItemInventory" />
-          <EntitySet Name="Permisions" EntityType="Model1.Permision" />
           <AssociationSet Name="UserRol" Association="Model1.UserRol">
             <End Role="User" EntitySet="UserSet" />
             <End Role="Rol" EntitySet="RolSet" />
@@ -85,15 +84,10 @@
             <End Role="Module" EntitySet="ModuleSet" />
             <End Role="FormModule" EntitySet="FormModuleSet" />
           </AssociationSet>
-          <AssociationSet Name="PermisionRolForm" Association="Model1.PermisionRolForm">
-            <End Role="Permision" EntitySet="Permisions" />
-            <End Role="RolForm" EntitySet="RolFormSet" />
-          </AssociationSet>
           <AssociationSet Name="CompanyUser" Association="Model1.CompanyUser">
             <End Role="Company" EntitySet="CompanySet" />
             <End Role="User" EntitySet="UserSet" />
           </AssociationSet>
-          <EntitySet Name="Times_ChangesSet" EntityType="Model1.Times_Changes" />
         </EntityContainer>
         <EntityType Name="Form">
           <Key>
@@ -136,7 +130,6 @@
           <Property Name="FormId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Rol" Relationship="Model1.RolRolForm" FromRole="RolForm" ToRole="Rol" />
           <Property Name="RolId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Permision" Relationship="Model1.PermisionRolForm" FromRole="RolForm" ToRole="Permision" />
         </EntityType>
         <EntityType Name="Rol">
           <Key>
@@ -248,7 +241,8 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="status" Type="String" Nullable="false" />
+          <Property Name="NameInventory" Type="String" Nullable="false" />
+          <Property Name="Status" Type="String" Nullable="false" />
           <Property Name="observations" Type="String" Nullable="false" />
           <Property Name="createAt" Type="String" Nullable="false" />
           <Property Name="deleteAt" Type="String" Nullable="false" />
@@ -294,14 +288,6 @@
           <NavigationProperty Name="Moviemiento" Relationship="Model1.MoviemientoMovimientoItemInventory" FromRole="MovimientoItemInventory" ToRole="Moviemiento" />
           <Property Name="MoviemientoId" Type="Int32" Nullable="false" />
           <Property Name="ItemId" Type="Int32" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Permision">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" Nullable="false" />
-          <NavigationProperty Name="RolForm" Relationship="Model1.PermisionRolForm" FromRole="Permision" ToRole="RolForm" />
         </EntityType>
         <Association Name="UserRol">
           <End Type="Model1.User" Role="User" Multiplicity="1" />
@@ -439,10 +425,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="PermisionRolForm">
-          <End Type="Model1.Permision" Role="Permision" Multiplicity="*" />
-          <End Type="Model1.RolForm" Role="RolForm" Multiplicity="1" />
-        </Association>
         <Association Name="CompanyUser">
           <End Type="Model1.Company" Role="Company" Multiplicity="1" />
           <End Type="Model1.User" Role="User" Multiplicity="*" />
@@ -455,12 +437,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="Times_Changes">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->

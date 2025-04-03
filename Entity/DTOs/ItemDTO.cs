@@ -6,13 +6,11 @@ using System.Threading.Tasks;
 
 namespace Entity.DTOs
 {
-    class ItemDTO
+    public class ItemDTO
     {
         public int Id { get; set; }
-        public string name { get; set; }
-        public string description { get; set; }
-        public string createdAt { get; set; }
-        public string updatedAt { get; set; }
-        public string deletedAt { get; set; }
+        public string NameItem { get; set; } = string.Empty;
+        public string Description { get; set; } = string.Empty;
+        public string UrlImage { get; set; } = string.Empty;
     }
 }

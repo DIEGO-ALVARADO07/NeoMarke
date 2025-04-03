@@ -9,13 +9,13 @@ namespace Entity.Model
     public class Company
     {
         public int Id { get; set; }
-        public string Name_Company { get; set; } = string.Empty;
-        public string Phone_Company { get; set; } = string.Empty;
-        public string Email_Company { get; set; } = string.Empty;
-        public int Nit_Company { get; set; } 
+        public string NameCompany { get; set; } = string.Empty;
+        public string PhoneCompany { get; set; } = string.Empty;
+        public string EmailCompany { get; set; } = string.Empty;
+        public int NitCompany { get; set; } 
         public string Logo { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
-        public string Status { get; set; } = string.Empty;
+        public bool Status { get; set; } 
         public DateTime CreatedAt { get; set; }
         public DateTime DeletedAt { get; set; }
         public DateTime UpdatedAt { get; set; }

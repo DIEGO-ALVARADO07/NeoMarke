@@ -9,7 +9,7 @@ namespace Entity.DTOs
     public class FormDTO
     {
         public int Id { get; set; }
-        public string Name_Form { get; set; } = string.Empty;
+        public string NameForm { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
         public bool Status { get; set; }
 

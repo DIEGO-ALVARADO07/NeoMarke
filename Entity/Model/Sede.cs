@@ -9,16 +9,16 @@ namespace Entity.Model
     public class Sede
     {
         public int Id { get; set; }
-        public string Name_Sede { get; set; } = string.Empty;
-        public string Address_Sede { get; set; } = string.Empty;
-        public string Phone_Sede { get; set; } = string.Empty;
-        public string Email_Sede { get; set; } = string.Empty;
-        public int Code_Sede { get; set; }
+        public string NameSede { get; set; } = string.Empty;
+        public string AddressSede { get; set; } = string.Empty;
+        public string PhoneSede { get; set; } = string.Empty;
+        public string EmailSede { get; set; } = string.Empty;
+        public int CodeSede { get; set; }
         public bool Status { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime DeletedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
-        public int Id_company { get; set; }
+        public int IdCompany { get; set; }
         public required Company Company { get; set; }
 
     }

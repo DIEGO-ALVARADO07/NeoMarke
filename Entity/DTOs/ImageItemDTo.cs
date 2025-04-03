@@ -9,9 +9,8 @@ namespace Entity.DTOs
     class ImageItemDTo
     {
         public int Id { get; set; }
-        public string urleImage { get; set; }
-        public string createdAt { get; set; }
-        public string deletedAt { get; set; }
-        public string updatedAt { get; set; }
+        public string UrlImage { get; set; } = string.Empty;
+        public string NameItem { get; set; } = string.Empty;
+
     }
 }

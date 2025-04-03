@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace Entity.DTOs
 {
-    class FormModuleDTO
+    public class FormModuleDTO
     {
         public int Id { get; set; }
-        public string status_procedure { get; set; }
+        public bool Status { get; set; }
+        public string Name_Module { get; set; } = string.Empty;
+        public string Name_Form { get; set; } = string.Empty;
     }
 }
