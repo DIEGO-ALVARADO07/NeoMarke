@@ -16,6 +16,6 @@ namespace Entity.DTOs
         public string Email { get; set; } = string.Empty;
         public string TypeIdentification { get; set; } = string.Empty;
         public int NumberIdentification { get; set; }
-        public string Status { get; set; } = string.Empty;
+        public bool Status { get; set; } 
     }
 }

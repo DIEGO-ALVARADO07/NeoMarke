@@ -91,7 +91,7 @@ namespace Entity.Contexts
         /// <param name="timeout">Tiempo de espera opcional para la consulta.</param>
         /// <param name="type">Tipo opcional de comando SQL.</param>
         /// <returns>Una colección de objetos del tipo especificado.</returns>
-        public async Task<IEnumerable<T>> QueryAsync<T>(string text, object? parameters = null, int? timeout = null, CommandType? type = null)
+        public async Task<IEnumerable<T>> QueryAsync<T>(string text, object parameters = null, int? timeout = null, CommandType? type = null)
         {
             using var command = new DapperEFCoreCommand(this, text, parameters, timeout, type, CancellationToken.None);
             var connection = this.Database.GetDbConnection();
@@ -107,7 +107,7 @@ namespace Entity.Contexts
         /// <param name="timeout">Tiempo de espera opcional para la consulta.</param>
         /// <param name="type">Tipo opcional de comando SQL.</param>
         /// <returns>Un objeto del tipo especificado o su valor predeterminado.</returns>
-        public async Task<T> QueryFirstOrDefaultAsync<T>(string text, object? parameters = null, int? timeout = null, CommandType? type = null)
+        public async Task<T> QueryFirstOrDefaultAsync<T>(string text, object parameters = null, int? timeout = null, CommandType? type = null)
         {
             using var command = new DapperEFCoreCommand(this, text, parameters, timeout, type, CancellationToken.None);
             var connection = this.Database.GetDbConnection();
