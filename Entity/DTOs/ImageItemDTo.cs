@@ -11,6 +11,7 @@ namespace Entity.DTOs
         public int Id { get; set; }
         public string UrlImage { get; set; } = string.Empty;
         public string NameItem { get; set; } = string.Empty;
+        public bool Status { get; set; }
 
     }
 }

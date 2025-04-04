@@ -13,5 +13,6 @@ namespace Entity.DTOs
         public string Description { get; set; } = string.Empty;
         public string UrlImage { get; set; } = string.Empty;
         public string NameInventory { get; set; } = string.Empty;
+        public bool Status { get; set; }
     }
 }
