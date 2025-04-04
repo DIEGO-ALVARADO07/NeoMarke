@@ -15,6 +15,5 @@ namespace Entity.Model
         public int IdModule { get; set; }
         public required Module Module { get; set; } // SIN INICIALIZAR, EVITA QUE SE CARGUE EN MEMORIA
 
-
     }
 }
