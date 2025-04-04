@@ -1,4 +1,4 @@
-﻿using Entity.Model.ENUMERACIONES;
+﻿using Entity.Enum;
 using System;
 using System.Collections.Generic;
 using System.Linq;

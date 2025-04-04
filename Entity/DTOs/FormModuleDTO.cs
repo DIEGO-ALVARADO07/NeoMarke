@@ -10,7 +10,7 @@ namespace Entity.DTOs
     {
         public int Id { get; set; }
         public bool Status { get; set; }
-        public string Name_Module { get; set; } = string.Empty;
-        public string Name_Form { get; set; } = string.Empty;
+        public string NameModule { get; set; } = string.Empty;
+        public string NameForm { get; set; } = string.Empty;
     }
 }

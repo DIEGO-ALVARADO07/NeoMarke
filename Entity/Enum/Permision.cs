@@ -10,16 +10,16 @@ namespace Entity.Enum
     public enum Permision
     {
         [Display(Name = "Create")]
-        CreateNeighbourhoods = 1,
+        Create = 1,
 
         [Display(Name = "Read")]
-        ReadNeighbourhoods = 2,
+        Read = 2,
 
         [Display(Name = "Update")]
-        UpdateNeighbourhoods = 3,
+        Update = 3,
 
         [Display(Name = "Delete")]
-        DeleteNeighbourhoods = 4,
+        Delete = 4,
 
     }
 }

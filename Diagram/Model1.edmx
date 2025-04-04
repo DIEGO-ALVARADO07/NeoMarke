@@ -94,9 +94,9 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name_form" Type="String" Nullable="false" />
-          <Property Name="description" Type="String" Nullable="false" />
-          <Property Name="status" Type="Boolean" Nullable="false" />
+          <Property Name="NameForm" Type="String" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="RolForm" Relationship="Model1.FormRolForm" FromRole="Form" ToRole="RolForm" />
           <NavigationProperty Name="FormModule" Relationship="Model1.FormFormModule" FromRole="Form" ToRole="FormModule" />
         </EntityType>
@@ -105,19 +105,19 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="status" Type="String" Nullable="false" />
+          <Property Name="Status" Type="String" Nullable="false" />
           <NavigationProperty Name="Form" Relationship="Model1.FormFormModule" FromRole="FormModule" ToRole="Form" />
-          <Property Name="FormId" Type="Int32" Nullable="false" />
+          <Property Name="IdForm" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Module" Relationship="Model1.ModuleFormModule" FromRole="FormModule" ToRole="Module" />
-          <Property Name="ModuleId" Type="Int32" Nullable="false" />
+          <Property Name="IdModule" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Module">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name_module" Type="String" Nullable="false" />
-          <Property Name="status" Type="Boolean" Nullable="false" />
+          <Property Name="NameModule" Type="String" Nullable="false" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="FormModule" Relationship="Model1.ModuleFormModule" FromRole="Module" ToRole="FormModule" />
         </EntityType>
         <EntityType Name="RolForm">
@@ -125,20 +125,20 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="permission" Type="Int32" Nullable="false" />
+          <Property Name="Permision" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Form" Relationship="Model1.FormRolForm" FromRole="RolForm" ToRole="Form" />
-          <Property Name="FormId" Type="Int32" Nullable="false" />
+          <Property Name="IdForm" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Rol" Relationship="Model1.RolRolForm" FromRole="RolForm" ToRole="Rol" />
-          <Property Name="RolId" Type="Int32" Nullable="false" />
+          <Property Name="IdRol" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Rol">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name_rol" Type="String" Nullable="false" />
-          <Property Name="description" Type="String" Nullable="false" />
-          <Property Name="status" Type="Boolean" Nullable="false" />
+          <Property Name="NameRol" Type="String" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="User" Relationship="Model1.UserRol" FromRole="Rol" ToRole="User" />
           <NavigationProperty Name="RolForm" Relationship="Model1.RolRolForm" FromRole="Rol" ToRole="RolForm" />
         </EntityType>
@@ -147,17 +147,17 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="username" Type="String" Nullable="false" />
-          <Property Name="password" Type="String" Nullable="false" />
-          <Property Name="createAt" Nullable="false" Type="String" />
-          <Property Name="deleteAt" Nullable="false" Type="String" />
-          <Property Name="status" Type="String" Nullable="false" />
-          <Property Name="update_date" Nullable="false" Type="String" />
+          <Property Name="Username" Type="String" Nullable="false" />
+          <Property Name="Password" Type="String" Nullable="false" />
+          <Property Name="CreateAt" Nullable="false" Type="String" />
+          <Property Name="DeleteAt" Nullable="false" Type="String" />
+          <Property Name="Status" Type="String" Nullable="false" />
+          <Property Name="UpdateAt" Nullable="false" Type="String" />
           <NavigationProperty Name="Rol" Relationship="Model1.UserRol" FromRole="User" ToRole="Rol" />
           <NavigationProperty Name="Inventory" Relationship="Model1.UserInventory" FromRole="User" ToRole="Inventory" />
           <NavigationProperty Name="Person" Relationship="Model1.UserPerson" FromRole="User" ToRole="Person" />
           <NavigationProperty Name="Company" Relationship="Model1.CompanyUser" FromRole="User" ToRole="Company" />
-          <Property Name="CompanyId" Type="String" Nullable="false" />
+          <Property Name="IdCompany" Type="String" Nullable="false" />
         </EntityType>
         <EntityType Name="Person">
           <Key>
@@ -213,7 +213,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" Nullable="false" />
+          <Property Name="NameItem" Type="String" Nullable="false" />
           <Property Name="description" Type="String" Nullable="false" />
           <Property Name="createAt" Type="String" Nullable="false" />
           <Property Name="deleteAt" Type="String" Nullable="false" />
@@ -385,7 +385,7 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="RolForm">
-              <PropertyRef Name="FormId" />
+              <PropertyRef Name="IdForm" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -397,7 +397,7 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="RolForm">
-              <PropertyRef Name="RolId" />
+              <PropertyRef Name="IdRol" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -409,7 +409,7 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="FormModule">
-              <PropertyRef Name="FormId" />
+              <PropertyRef Name="IdForm" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -421,7 +421,7 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="FormModule">
-              <PropertyRef Name="ModuleId" />
+              <PropertyRef Name="IdModule" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -433,7 +433,7 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="User">
-              <PropertyRef Name="CompanyId" />
+              <PropertyRef Name="IdCompany" />
             </Dependent>
           </ReferentialConstraint>
         </Association>

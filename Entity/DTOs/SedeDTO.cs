@@ -13,7 +13,8 @@ namespace Entity.DTOs
         public string AddressSede { get; set; } = string.Empty;
         public string PhoneSede { get; set; } = string.Empty;
         public string EmailSede { get; set; } = string.Empty;
-        public int CodeSede { get; set; }
+        public int CodeSede { get; set; } 
         public bool Status { get; set; }
+        public string NameCompany { get; set; } = string.Empty;
     }
 }

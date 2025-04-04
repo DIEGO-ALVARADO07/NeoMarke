@@ -9,6 +9,7 @@ namespace Entity.Model
     public class Inventory
     {
         public int Id { get; set; }
+        public string NameInventory { get; set; } = string.Empty;
         public bool Status { get; set; }
         public string DescriptionInventory { get; set; } = string.Empty;
         public string Observation { get; set; } = string.Empty;
