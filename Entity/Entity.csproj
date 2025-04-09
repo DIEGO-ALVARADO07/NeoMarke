@@ -21,7 +21,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Business\Business.csproj" />
     <ProjectReference Include="..\Diagram\Diagram.vbproj" />
     <ProjectReference Include="..\Utilities\Utilities.csproj" />
     <ProjectReference Include="..\Web\Web.csproj" />

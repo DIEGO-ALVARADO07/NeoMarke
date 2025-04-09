@@ -4,9 +4,8 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="24ad8c9fba53449687950ce1fb02ae9d" Name="Diagram1" ZoomLevel="127" >
-        <EntityTypeShape EntityType="Model1.Form" Width="1.5" PointX="11.5" PointY="6.375" />
-        <EntityTypeShape EntityType="Model1.FormModule" Width="1.5" PointX="16.5" PointY="7.25" />
+      <Diagram DiagramId="24ad8c9fba53449687950ce1fb02ae9d" Name="Diagram1" ZoomLevel="80" >
+        <EntityTypeShape EntityType="Model1.Form" Width="1.5" PointX="13.625" PointY="6.25" />
         <EntityTypeShape EntityType="Model1.Module" Width="1.5" PointX="16.375" PointY="2.875" />
         <EntityTypeShape EntityType="Model1.RolForm" Width="1.5" PointX="11.5" PointY="3" IsExpanded="true" />
         <EntityTypeShape EntityType="Model1.Rol" Width="1.5" PointX="8.125" PointY="2.875" />
@@ -14,30 +13,33 @@
         <EntityTypeShape EntityType="Model1.Person" Width="1.5" PointX="2.125" PointY="0.5" />
         <EntityTypeShape EntityType="Model1.Sede" Width="1.5" PointX="6.75" PointY="10.625" />
         <EntityTypeShape EntityType="Model1.Company" Width="1.5" PointX="3.125" PointY="11.25" />
-        <EntityTypeShape EntityType="Model1.Item" Width="1.5" PointX="15.125" PointY="11.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model1.ImageItem" Width="1.5" PointX="17.75" PointY="11.5" />
-        <EntityTypeShape EntityType="Model1.Inventory" Width="1.5" PointX="10.125" PointY="11.75" />
+        <EntityTypeShape EntityType="Model1.Product" Width="1.5" PointX="13.5" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model1.ImageItem" Width="1.5" PointX="18.625" PointY="11.625" />
+        <EntityTypeShape EntityType="Model1.Inventory" Width="1.5" PointX="9.75" PointY="11.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Model1.Category" Width="1.5" PointX="17" PointY="15.5" />
-        <EntityTypeShape EntityType="Model1.Moviemiento" Width="1.5" PointX="10.125" PointY="19.375" />
-        <EntityTypeShape EntityType="Model1.MovimientoItemInventory" Width="1.5" PointX="12.75" PointY="15.625" />
+        <EntityTypeShape EntityType="Model1.MovimientoInventory" PointX="12.375" PointY="16" Width="1.5" />
         <AssociationConnector Association="Model1.UserRol" />
-        <AssociationConnector Association="Model1.UserInventory" />
         <AssociationConnector Association="Model1.CompanySede" />
         <AssociationConnector Association="Model1.ItemImageItem" />
         <AssociationConnector Association="Model1.ItemCategory" />
-        <AssociationConnector Association="Model1.ItemMovimientoItemInventory" ManuallyRouted="true" >
-          <ConnectorPoint PointX="15.125" PointY="12.210673808066186" />
-          <ConnectorPoint PointX="13.577624088162395" PointY="12.210673808066186" />
-          <ConnectorPoint PointX="13.577624088162395" PointY="15.625000000000004" />
-        </AssociationConnector>
         <AssociationConnector Association="Model1.InventoryMovimientoItemInventory" />
-        <AssociationConnector Association="Model1.MoviemientoMovimientoItemInventory" />
         <AssociationConnector Association="Model1.UserPerson" />
-        <AssociationConnector Association="Model1.InventoryItem" />
         <AssociationConnector Association="Model1.FormRolForm" />
         <AssociationConnector Association="Model1.RolRolForm" />
-        <AssociationConnector Association="Model1.FormFormModule" />
-        <AssociationConnector Association="Model1.ModuleFormModule" />
+        <EntityTypeShape EntityType="Model1.Buyout" Width="1.5" PointX="8.625" PointY="7.375" />
+        <AssociationConnector Association="Model1.ModuleForm" />
+        <AssociationConnector Association="Model1.UserBuyout" />
+        <AssociationConnector Association="Model1.ProductBuyout" />
+        <AssociationConnector Association="Model1.UserMovimientoInventory" />
+        <AssociationConnector Association="Model1.ProductMovimientoInventory" />
+        <AssociationConnector Association="Model1.ProductInventory" />
+        <EntityTypeShape EntityType="Model1.Sale" Width="1.5" PointX="17.5" PointY="8.625" />
+        <AssociationConnector Association="Model1.UserSale" />
+        <EntityTypeShape EntityType="Model1.SaleDetail" Width="1.5" PointX="21.125" PointY="8.625" />
+        <AssociationConnector Association="Model1.SaleSaleDetail" />
+        <AssociationConnector Association="Model1.ProductSaleDetail" />
+        <EntityTypeShape EntityType="Model1.Notification" Width="1.5" PointX="24.375" PointY="7.375" />
+        <AssociationConnector Association="Model1.UserNotification" />
         <AssociationConnector Association="Model1.CompanyUser" />
       </Diagram>
     </edmx:Diagrams>

@@ -10,11 +10,11 @@ namespace Entity.Model
     public class RolForm
     {
         public int Id { get; set; }
-        public required Permision Permision { get; set; }
+        public Permision Permision { get; set; }
         public int IdRol { get; set; }
-        public required Rol Rol { get; set; }
+        public Rol Rol { get; set; }
         public int IdForm { get; set; }
-        public required Form Form { get; set; }
+        public Form Form { get; set; }
 
     }
 }

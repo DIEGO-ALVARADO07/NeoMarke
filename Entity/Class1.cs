@@ -1,4 +1,4 @@
-﻿namespace Data
+﻿namespace Entity
 {
     public class Class1
     {

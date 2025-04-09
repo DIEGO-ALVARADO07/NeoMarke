@@ -9,11 +9,11 @@ namespace Entity.Model
     public class Rol
     {
         public int Id { get; set; }
-        public string Name_Rol { get; set; } = string.Empty;
+        public string NameRol { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
         public bool Status { get; set; }
         public int IdUser { get; set; }
-        public required User User { get; set; }
+        public User User { get; set; }
 
     }
 }

@@ -15,6 +15,6 @@ namespace Entity.Model
         public DateTime UpdateAt { get; set; }
         public bool Status { get; set; }
         public int IdItem { get; set; }
-        public required Item Item { get; set; }
+        public required Product Item { get; set; }
     }
 }

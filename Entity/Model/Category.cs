@@ -12,7 +12,7 @@ namespace Entity.Model
         public string NameCategory { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
         public int IdItem { get; set; }
-        public required Item Item { get; set; }
+        public required Product Item { get; set; }
 
     }
 }
