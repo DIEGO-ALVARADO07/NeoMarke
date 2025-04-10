@@ -18,12 +18,12 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="9.0.0-preview.3.efcore.9.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Diagram\Diagram.vbproj" />
     <ProjectReference Include="..\Utilities\Utilities.csproj" />
-    <ProjectReference Include="..\Web\Web.csproj" />
   </ItemGroup>
 
 </Project>

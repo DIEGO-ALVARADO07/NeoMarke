@@ -4,11 +4,528 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" Namespace="Model1.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005">
-        <EntityContainer Name="Model1TargetContainer" >
-        </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+    <Schema Namespace="Model1.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="Model1StoreContainer">
+    <EntitySet Name="FormSet" EntityType="Model1.Store.FormSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ModuleSet" EntityType="Model1.Store.ModuleSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="RolFormSet" EntityType="Model1.Store.RolFormSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="RolSet" EntityType="Model1.Store.RolSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserSet" EntityType="Model1.Store.UserSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PersonSet" EntityType="Model1.Store.PersonSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="SedeSet" EntityType="Model1.Store.SedeSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CompanySet" EntityType="Model1.Store.CompanySet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Items" EntityType="Model1.Store.Items" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ImageItemSet" EntityType="Model1.Store.ImageItemSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Inventorys" EntityType="Model1.Store.Inventorys" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CategorySet" EntityType="Model1.Store.CategorySet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MovimientoInventorySet" EntityType="Model1.Store.MovimientoInventorySet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Buyouts" EntityType="Model1.Store.Buyouts" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Sales" EntityType="Model1.Store.Sales" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="SaleDetailSet" EntityType="Model1.Store.SaleDetailSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Notifications" EntityType="Model1.Store.Notifications" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="UserRol" Association="Model1.Store.UserRol">
+      <End Role="User" EntitySet="UserSet" />
+      <End Role="Rol" EntitySet="RolSet" />
+    </AssociationSet>
+    <AssociationSet Name="CompanySede" Association="Model1.Store.CompanySede">
+      <End Role="Company" EntitySet="CompanySet" />
+      <End Role="Sede" EntitySet="SedeSet" />
+    </AssociationSet>
+    <AssociationSet Name="ItemImageItem" Association="Model1.Store.ItemImageItem">
+      <End Role="Item" EntitySet="Items" />
+      <End Role="ImageItem" EntitySet="ImageItemSet" />
+    </AssociationSet>
+    <AssociationSet Name="ItemCategory" Association="Model1.Store.ItemCategory">
+      <End Role="Item" EntitySet="Items" />
+      <End Role="Category" EntitySet="CategorySet" />
+    </AssociationSet>
+    <AssociationSet Name="InventoryMovimientoItemInventory" Association="Model1.Store.InventoryMovimientoItemInventory">
+      <End Role="Inventory" EntitySet="Inventorys" />
+      <End Role="MovimientoItemInventory" EntitySet="MovimientoInventorySet" />
+    </AssociationSet>
+    <AssociationSet Name="UserPerson" Association="Model1.Store.UserPerson">
+      <End Role="User" EntitySet="UserSet" />
+      <End Role="Person" EntitySet="PersonSet" />
+    </AssociationSet>
+    <AssociationSet Name="FormRolForm" Association="Model1.Store.FormRolForm">
+      <End Role="Form" EntitySet="FormSet" />
+      <End Role="RolForm" EntitySet="RolFormSet" />
+    </AssociationSet>
+    <AssociationSet Name="RolRolForm" Association="Model1.Store.RolRolForm">
+      <End Role="Rol" EntitySet="RolSet" />
+      <End Role="RolForm" EntitySet="RolFormSet" />
+    </AssociationSet>
+    <AssociationSet Name="ModuleForm" Association="Model1.Store.ModuleForm">
+      <End Role="Module" EntitySet="ModuleSet" />
+      <End Role="Form" EntitySet="FormSet" />
+    </AssociationSet>
+    <AssociationSet Name="UserBuyout" Association="Model1.Store.UserBuyout">
+      <End Role="User" EntitySet="UserSet" />
+      <End Role="Buyout" EntitySet="Buyouts" />
+    </AssociationSet>
+    <AssociationSet Name="ProductBuyout" Association="Model1.Store.ProductBuyout">
+      <End Role="Product" EntitySet="Items" />
+      <End Role="Buyout" EntitySet="Buyouts" />
+    </AssociationSet>
+    <AssociationSet Name="UserMovimientoInventory" Association="Model1.Store.UserMovimientoInventory">
+      <End Role="User" EntitySet="UserSet" />
+      <End Role="MovimientoInventory" EntitySet="MovimientoInventorySet" />
+    </AssociationSet>
+    <AssociationSet Name="ProductMovimientoInventory" Association="Model1.Store.ProductMovimientoInventory">
+      <End Role="Product" EntitySet="Items" />
+      <End Role="MovimientoInventory" EntitySet="MovimientoInventorySet" />
+    </AssociationSet>
+    <AssociationSet Name="ProductInventory" Association="Model1.Store.ProductInventory">
+      <End Role="Product" EntitySet="Items" />
+      <End Role="Inventory" EntitySet="Inventorys" />
+    </AssociationSet>
+    <AssociationSet Name="UserSale" Association="Model1.Store.UserSale">
+      <End Role="User" EntitySet="UserSet" />
+      <End Role="Sale" EntitySet="Sales" />
+    </AssociationSet>
+    <AssociationSet Name="SaleSaleDetail" Association="Model1.Store.SaleSaleDetail">
+      <End Role="Sale" EntitySet="Sales" />
+      <End Role="SaleDetail" EntitySet="SaleDetailSet" />
+    </AssociationSet>
+    <AssociationSet Name="ProductSaleDetail" Association="Model1.Store.ProductSaleDetail">
+      <End Role="Product" EntitySet="Items" />
+      <End Role="SaleDetail" EntitySet="SaleDetailSet" />
+    </AssociationSet>
+    <AssociationSet Name="UserNotification" Association="Model1.Store.UserNotification">
+      <End Role="User" EntitySet="UserSet" />
+      <End Role="Notification" EntitySet="Notifications" />
+    </AssociationSet>
+    <AssociationSet Name="CompanyUser" Association="Model1.Store.CompanyUser">
+      <End Role="Company" EntitySet="CompanySet" />
+      <End Role="User" EntitySet="UserSet" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="FormSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NameForm" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Status" Type="bit" Nullable="false" />
+    <Property Name="IdModule" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ModuleSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NameModule" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Status" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RolFormSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Permision" Type="int" Nullable="false" />
+    <Property Name="IdForm" Type="int" Nullable="false" />
+    <Property Name="IdRol" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RolSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NameRol" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Status" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Username" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CreateAt" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DeleteAt" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Status" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="UpdateAt" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CompanyId" Type="int" Nullable="false" />
+    <Property Name="Person_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PersonSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="first_name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="last_name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="phone_number" Type="smallint" Nullable="false" />
+    <Property Name="email" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="type_identification" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="number_identification" Type="smallint" Nullable="false" />
+    <Property Name="status" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SedeSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NameSede" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CodeSede" Type="bigint" Nullable="false" />
+    <Property Name="AddressSede" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PhoneSede" Type="smallint" Nullable="false" />
+    <Property Name="EmailSede" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Status" Type="bit" Nullable="false" />
+    <Property Name="CreateAt" Type="datetime" Nullable="false" />
+    <Property Name="DeleteAt" Type="datetime" Nullable="false" />
+    <Property Name="UpdateAt" Type="datetime" Nullable="false" />
+    <Property Name="IdCompany" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CompanySet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CreateAt" Type="datetime" Nullable="false" />
+    <Property Name="DeleteAt" Type="datetime" Nullable="false" />
+    <Property Name="UpdateAt" Type="datetime" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="NameCompany" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PhoneCompany" Type="smallint" Nullable="false" />
+    <Property Name="EmailCompany" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="NitCompany" Type="smallint" Nullable="false" />
+    <Property Name="Status" Type="bit" Nullable="false" />
+    <Property Name="Logo" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Items">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NameItem" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Price" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CreateAt" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DeleteAt" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="UpdateAt" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Status" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IdInventory" Type="int" Nullable="false" />
+    <Property Name="ImageItem_Id" Type="int" Nullable="false" />
+    <Property Name="Category_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ImageItemSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UrlImage" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IdProduct" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Inventorys">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NameInventory" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Status" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Observation" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CreateAt" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DeleteAt" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="UpdateAt" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="StockActual" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ZoneProduct" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IdProduct" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CategorySet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IdProduct" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MovimientoInventorySet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TypeMoviment" Type="int" Nullable="false" />
+    <Property Name="Quantity" Type="int" Nullable="false" />
+    <Property Name="Date" Type="int" Nullable="false" />
+    <Property Name="Description" Type="int" Nullable="false" />
+    <Property Name="IdInventory" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="ProductId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Buyouts">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Quantity" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Date" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IdUser" Type="int" Nullable="false" />
+    <Property Name="ProductId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Sales">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Date" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="totaly" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IdUser" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SaleDetailSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Quantity" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Price" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IdSale" Type="int" Nullable="false" />
+    <Property Name="IdProduct" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Notifications">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TypeAction" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IdReferece" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Mensage" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Read" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Date" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="UserRol">
+    <End Role="User" Type="Model1.Store.UserSet" Multiplicity="0..1" />
+    <End Role="Rol" Type="Model1.Store.RolSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Rol">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CompanySede">
+    <End Role="Company" Type="Model1.Store.CompanySet" Multiplicity="1" />
+    <End Role="Sede" Type="Model1.Store.SedeSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Company">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Sede">
+        <PropertyRef Name="IdCompany" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ItemImageItem">
+    <End Role="Item" Type="Model1.Store.Items" Multiplicity="*" />
+    <End Role="ImageItem" Type="Model1.Store.ImageItemSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="ImageItem">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Item">
+        <PropertyRef Name="ImageItem_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ItemCategory">
+    <End Role="Item" Type="Model1.Store.Items" Multiplicity="*" />
+    <End Role="Category" Type="Model1.Store.CategorySet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Item">
+        <PropertyRef Name="Category_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="InventoryMovimientoItemInventory">
+    <End Role="Inventory" Type="Model1.Store.Inventorys" Multiplicity="1" />
+    <End Role="MovimientoItemInventory" Type="Model1.Store.MovimientoInventorySet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Inventory">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MovimientoItemInventory">
+        <PropertyRef Name="TypeMoviment" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserPerson">
+    <End Role="User" Type="Model1.Store.UserSet" Multiplicity="*" />
+    <End Role="Person" Type="Model1.Store.PersonSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="Person_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FormRolForm">
+    <End Role="Form" Type="Model1.Store.FormSet" Multiplicity="1" />
+    <End Role="RolForm" Type="Model1.Store.RolFormSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Form">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RolForm">
+        <PropertyRef Name="IdForm" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="RolRolForm">
+    <End Role="Rol" Type="Model1.Store.RolSet" Multiplicity="1" />
+    <End Role="RolForm" Type="Model1.Store.RolFormSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rol">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RolForm">
+        <PropertyRef Name="IdRol" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ModuleForm">
+    <End Role="Module" Type="Model1.Store.ModuleSet" Multiplicity="1" />
+    <End Role="Form" Type="Model1.Store.FormSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Module">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Form">
+        <PropertyRef Name="IdModule" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserBuyout">
+    <End Role="User" Type="Model1.Store.UserSet" Multiplicity="1" />
+    <End Role="Buyout" Type="Model1.Store.Buyouts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Buyout">
+        <PropertyRef Name="IdUser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ProductBuyout">
+    <End Role="Product" Type="Model1.Store.Items" Multiplicity="1" />
+    <End Role="Buyout" Type="Model1.Store.Buyouts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Buyout">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserMovimientoInventory">
+    <End Role="User" Type="Model1.Store.UserSet" Multiplicity="1" />
+    <End Role="MovimientoInventory" Type="Model1.Store.MovimientoInventorySet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MovimientoInventory">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ProductMovimientoInventory">
+    <End Role="Product" Type="Model1.Store.Items" Multiplicity="1" />
+    <End Role="MovimientoInventory" Type="Model1.Store.MovimientoInventorySet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MovimientoInventory">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ProductInventory">
+    <End Role="Product" Type="Model1.Store.Items" Multiplicity="1" />
+    <End Role="Inventory" Type="Model1.Store.Inventorys" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Inventory">
+        <PropertyRef Name="IdProduct" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserSale">
+    <End Role="User" Type="Model1.Store.UserSet" Multiplicity="1" />
+    <End Role="Sale" Type="Model1.Store.Sales" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Sale">
+        <PropertyRef Name="IdUser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SaleSaleDetail">
+    <End Role="Sale" Type="Model1.Store.Sales" Multiplicity="1" />
+    <End Role="SaleDetail" Type="Model1.Store.SaleDetailSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sale">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SaleDetail">
+        <PropertyRef Name="IdSale" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ProductSaleDetail">
+    <End Role="Product" Type="Model1.Store.Items" Multiplicity="1" />
+    <End Role="SaleDetail" Type="Model1.Store.SaleDetailSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SaleDetail">
+        <PropertyRef Name="IdProduct" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserNotification">
+    <End Role="User" Type="Model1.Store.UserSet" Multiplicity="1" />
+    <End Role="Notification" Type="Model1.Store.Notifications" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Notification">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CompanyUser">
+    <End Role="Company" Type="Model1.Store.CompanySet" Multiplicity="1" />
+    <End Role="User" Type="Model1.Store.UserSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Company">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="CompanyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Model1" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
@@ -547,13 +1064,245 @@
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-      <Mapping xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs" Space="C-S">
-        <Alias Key="Model" Value="Model1" />
-        <Alias Key="Target" Value="Model1.Store" />
-        <EntityContainerMapping CdmEntityContainer="Model1Container" StorageEntityContainer="Model1TargetContainer">
-        </EntityContainerMapping>
-      </Mapping>
-    </edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Model1StoreContainer" CdmEntityContainer="Model1Container">
+    <EntitySetMapping Name="FormSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Form)">
+        <MappingFragment StoreEntitySet="FormSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="NameForm" ColumnName="NameForm" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="IdModule" ColumnName="IdModule" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ModuleSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Module)">
+        <MappingFragment StoreEntitySet="ModuleSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="NameModule" ColumnName="NameModule" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RolFormSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.RolForm)">
+        <MappingFragment StoreEntitySet="RolFormSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Permision" ColumnName="Permision" />
+          <ScalarProperty Name="IdForm" ColumnName="IdForm" />
+          <ScalarProperty Name="IdRol" ColumnName="IdRol" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RolSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Rol)">
+        <MappingFragment StoreEntitySet="RolSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="NameRol" ColumnName="NameRol" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.User)">
+        <MappingFragment StoreEntitySet="UserSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="CreateAt" ColumnName="CreateAt" />
+          <ScalarProperty Name="DeleteAt" ColumnName="DeleteAt" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="UpdateAt" ColumnName="UpdateAt" />
+          <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PersonSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Person)">
+        <MappingFragment StoreEntitySet="PersonSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="first_name" ColumnName="first_name" />
+          <ScalarProperty Name="last_name" ColumnName="last_name" />
+          <ScalarProperty Name="phone_number" ColumnName="phone_number" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="type_identification" ColumnName="type_identification" />
+          <ScalarProperty Name="number_identification" ColumnName="number_identification" />
+          <ScalarProperty Name="status" ColumnName="status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SedeSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Sede)">
+        <MappingFragment StoreEntitySet="SedeSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="NameSede" ColumnName="NameSede" />
+          <ScalarProperty Name="CodeSede" ColumnName="CodeSede" />
+          <ScalarProperty Name="AddressSede" ColumnName="AddressSede" />
+          <ScalarProperty Name="PhoneSede" ColumnName="PhoneSede" />
+          <ScalarProperty Name="EmailSede" ColumnName="EmailSede" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="CreateAt" ColumnName="CreateAt" />
+          <ScalarProperty Name="DeleteAt" ColumnName="DeleteAt" />
+          <ScalarProperty Name="UpdateAt" ColumnName="UpdateAt" />
+          <ScalarProperty Name="IdCompany" ColumnName="IdCompany" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CompanySet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Company)">
+        <MappingFragment StoreEntitySet="CompanySet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CreateAt" ColumnName="CreateAt" />
+          <ScalarProperty Name="DeleteAt" ColumnName="DeleteAt" />
+          <ScalarProperty Name="UpdateAt" ColumnName="UpdateAt" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="NameCompany" ColumnName="NameCompany" />
+          <ScalarProperty Name="PhoneCompany" ColumnName="PhoneCompany" />
+          <ScalarProperty Name="EmailCompany" ColumnName="EmailCompany" />
+          <ScalarProperty Name="NitCompany" ColumnName="NitCompany" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Logo" ColumnName="Logo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Items">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Product)">
+        <MappingFragment StoreEntitySet="Items">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="NameItem" ColumnName="NameItem" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="CreateAt" ColumnName="CreateAt" />
+          <ScalarProperty Name="DeleteAt" ColumnName="DeleteAt" />
+          <ScalarProperty Name="UpdateAt" ColumnName="UpdateAt" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="IdInventory" ColumnName="IdInventory" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ImageItemSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.ImageItem)">
+        <MappingFragment StoreEntitySet="ImageItemSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UrlImage" ColumnName="UrlImage" />
+          <ScalarProperty Name="IdProduct" ColumnName="IdProduct" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Inventorys">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Inventory)">
+        <MappingFragment StoreEntitySet="Inventorys">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="NameInventory" ColumnName="NameInventory" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Observation" ColumnName="Observation" />
+          <ScalarProperty Name="CreateAt" ColumnName="CreateAt" />
+          <ScalarProperty Name="DeleteAt" ColumnName="DeleteAt" />
+          <ScalarProperty Name="UpdateAt" ColumnName="UpdateAt" />
+          <ScalarProperty Name="StockActual" ColumnName="StockActual" />
+          <ScalarProperty Name="ZoneProduct" ColumnName="ZoneProduct" />
+          <ScalarProperty Name="IdProduct" ColumnName="IdProduct" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CategorySet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Category)">
+        <MappingFragment StoreEntitySet="CategorySet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="IdProduct" ColumnName="IdProduct" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MovimientoInventorySet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.MovimientoInventory)">
+        <MappingFragment StoreEntitySet="MovimientoInventorySet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TypeMoviment" ColumnName="TypeMoviment" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="IdInventory" ColumnName="IdInventory" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Buyouts">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Buyout)">
+        <MappingFragment StoreEntitySet="Buyouts">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sales">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Sale)">
+        <MappingFragment StoreEntitySet="Sales">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="totaly" ColumnName="totaly" />
+          <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SaleDetailSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.SaleDetail)">
+        <MappingFragment StoreEntitySet="SaleDetailSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="IdSale" ColumnName="IdSale" />
+          <ScalarProperty Name="IdProduct" ColumnName="IdProduct" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Notifications">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Notification)">
+        <MappingFragment StoreEntitySet="Notifications">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TypeAction" ColumnName="TypeAction" />
+          <ScalarProperty Name="IdReferece" ColumnName="IdReferece" />
+          <ScalarProperty Name="Mensage" ColumnName="Mensage" />
+          <ScalarProperty Name="Read" ColumnName="Read" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="ItemImageItem" TypeName="Model1.ItemImageItem" StoreEntitySet="Items">
+      <EndProperty Name="ImageItem">
+        <ScalarProperty Name="Id" ColumnName="ImageItem_Id" />
+      </EndProperty>
+      <EndProperty Name="Item">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ItemCategory" TypeName="Model1.ItemCategory" StoreEntitySet="Items">
+      <EndProperty Name="Category">
+        <ScalarProperty Name="Id" ColumnName="Category_Id" />
+      </EndProperty>
+      <EndProperty Name="Item">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="UserPerson" TypeName="Model1.UserPerson" StoreEntitySet="UserSet">
+      <EndProperty Name="Person">
+        <ScalarProperty Name="Id" ColumnName="Person_Id" />
+      </EndProperty>
+      <EndProperty Name="User">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
@@ -567,6 +1316,7 @@
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="False" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
       </DesignerInfoPropertySet>
     </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->

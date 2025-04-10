@@ -1,9 +1,11 @@
-﻿using Dapper;
+﻿using Entity.Model;
+using Dapper;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Configuration;
 using System.Data;
 using System.Reflection;
+using System.Reflection.Emit;
 
 namespace Entity.Contexts
 {
@@ -38,8 +40,58 @@ namespace Entity.Contexts
             base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
+            // Conversión enum a string para el tipo de notificación
+            modelBuilder.Entity<Notification>()
+
+                .Property(n => n.TypeAction)
+                .HasConversion<string>();
+
+            // Conversión enum a string para el tipo de identificacón
+            modelBuilder.Entity<Person>()
+
+                .Property(n => n.TypeIdentification)
+                .HasConversion<string>();
+
+            // Conversión enum a string para el tipo de movimiento en inventario
+            modelBuilder.Entity<MovementInventory>()
+
+                .Property(n => n.TypeMovement)
+                .HasConversion<string>();
+
+            // Conversión enum a string para el tipo de permiso en cada rol y su accion en los formularios
+            modelBuilder.Entity<RolForm>()
+                .Property(n => n.Permision)
+                .HasConversion<string>();
+
+
+            // Metodos Relaciones entre tablas de Personas con Usuarios
+            modelBuilder.Entity<Person>()
+               .HasOne(p => p.User)
+               .WithOne(u => u.Person)
+               .HasForeignKey<User>(u => u.IdPerson); // Especifica la clave foránea
             base.OnModelCreating(modelBuilder);
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
+
+            /* Metodos de User 
+            // Metodos Relaciones entre tablas de Usuarios con Roles
+            */
+            modelBuilder.Entity<User>()
+               .HasOne(p => p.Rol)
+               .WithOne(u => u.User)
+               .HasForeignKey<User>(u => u.IdRol); // Especifica la clave foránea
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
+            // Metodo Relaciones entre tablas de Usuarios con Empresas
+            modelBuilder.Entity<User>()
+               .HasOne(p => p.Company)
+               .WithMany(u => u.Users)
+               .HasForeignKey(u => u.IdCompany); // Especifica la clave foránea
+               base.OnModelCreating(modelBuilder);
+               modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
+
 
         /// <summary>
         /// Configura opciones adicionales del contexto, como el registro de datos sensibles.

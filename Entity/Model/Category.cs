@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace Entity.Model
 {
     public class Category
@@ -11,8 +6,8 @@ namespace Entity.Model
         public int Id { get; set; }
         public string NameCategory { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
-        public int IdItem { get; set; }
-        public required Product Item { get; set; }
+        public int IdProduct { get; set; }
+        public required Product Product { get; set; }
 
     }
 }

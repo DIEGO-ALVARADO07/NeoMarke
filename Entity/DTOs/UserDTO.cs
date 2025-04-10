@@ -14,6 +14,7 @@ namespace Entity.DTOs
         public bool Status { get; set; } 
         public int IdPerson { get; set; }
         public int IdRol { get; set; }
-        public int CompanyId { get; set; } 
+        public int IdCompany { get; set; } 
+        public int IdNotification { get; set; }
     }
 }

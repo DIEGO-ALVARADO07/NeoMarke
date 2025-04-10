@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Entity.Model
+﻿namespace Entity.Model
 {
     public class Company
     {
@@ -19,5 +13,7 @@ namespace Entity.Model
         public DateTime CreatedAt { get; set; }
         public DateTime DeletedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
+        public int IdUser { get; set; }
+        public ICollection<User> Users { get; set; } = new List<User>(); // <- propiedad correcta
     }
 }
