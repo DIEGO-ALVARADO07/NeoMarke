@@ -19,7 +19,7 @@ namespace Entity.Model
         public DateTime DeletedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
         public int IdCompany { get; set; }
-        public required Company Company { get; set; }
+        public Company Company { get; set; }
 
     }
 }

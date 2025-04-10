@@ -4,14 +4,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Entity.Enum;
 
 namespace Entity.DTOs
 {
     public class RolFormDTO
     {
         public int Id { get; set; }
-        public string Permision { get; set; } = string.Empty;
-        public string NameRol { get; set; } = string.Empty;
-        public string NameForm { get; set; } = string.Empty;
+        public Permision Permision { get; set; }
+        public int IdRol { get; set; }
+        public int IdForm { get; set; }
     }
 }

@@ -15,6 +15,6 @@ namespace Entity.DTOs
         public string EmailSede { get; set; } = string.Empty;
         public int CodeSede { get; set; } 
         public bool Status { get; set; }
-        public string NameCompany { get; set; } = string.Empty;
+        public int IdCompany { get; set; }
     }
 }
