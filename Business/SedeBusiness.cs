@@ -62,7 +62,7 @@ public class SedeBusiness
         }
     }
 
-    // Método para crear una sede desde un DTO
+    // Updated method to handle potential null reference for "sedeCreada"
     public async Task<SedeDTO> CreateSedeAsync(SedeDTO sedeDto)
     {
         try
@@ -72,6 +72,12 @@ public class SedeBusiness
             var sede = MapToEntity(sedeDto);
 
             var sedeCreada = await _sedeData.CreateAsync(sede);
+
+            if (sedeCreada == null)
+            {
+                _logger.LogError("La creación de la sede devolvió un resultado nulo");
+                throw new ExternalServiceException("Base de datos", "Error al crear la sede: resultado nulo");
+            }
 
             return MapToDTO(sedeCreada);
         }

@@ -539,7 +539,7 @@
           <EntitySet Name="SedeSet" EntityType="Model1.Sede" />
           <EntitySet Name="CompanySet" EntityType="Model1.Company" />
           <EntitySet Name="Items" EntityType="Model1.Product" />
-          <EntitySet Name="ImageItemSet" EntityType="Model1.ImageItem" />
+          <EntitySet Name="ImageProductSet" EntityType="Model1.ImageProduct" />
           <EntitySet Name="Inventorys" EntityType="Model1.Inventory" />
           <EntitySet Name="CategorySet" EntityType="Model1.Category" />
           <EntitySet Name="MovimientoInventorySet" EntityType="Model1.MovimientoInventory" />
@@ -553,7 +553,7 @@
           </AssociationSet>
           <AssociationSet Name="ItemImageItem" Association="Model1.ItemImageItem">
             <End Role="Item" EntitySet="Items" />
-            <End Role="ImageItem" EntitySet="ImageItemSet" />
+            <End Role="ImageItem" EntitySet="ImageProductSet" />
           </AssociationSet>
           <AssociationSet Name="ItemCategory" Association="Model1.ItemCategory">
             <End Role="Item" EntitySet="Items" />
@@ -596,10 +596,6 @@
             <End Role="Product" EntitySet="Items" />
             <End Role="MovimientoInventory" EntitySet="MovimientoInventorySet" />
           </AssociationSet>
-          <AssociationSet Name="ProductInventory" Association="Model1.ProductInventory">
-            <End Role="Product" EntitySet="Items" />
-            <End Role="Inventory" EntitySet="Inventorys" />
-          </AssociationSet>
           <EntitySet Name="Sales" EntityType="Model1.Sale" />
           <AssociationSet Name="UserSale" Association="Model1.UserSale">
             <End Role="User" EntitySet="UserSet" />
@@ -622,6 +618,10 @@
           <AssociationSet Name="CompanyUser" Association="Model1.CompanyUser">
             <End Role="Company" EntitySet="CompanySet" />
             <End Role="User" EntitySet="UserSet" />
+          </AssociationSet>
+          <AssociationSet Name="InventoryProduct" Association="Model1.InventoryProduct">
+            <End Role="Inventory" EntitySet="Inventorys" />
+            <End Role="Product" EntitySet="Items" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Form">
@@ -741,7 +741,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NameItem" Type="String" Nullable="false" />
+          <Property Name="NameProduct" Type="String" Nullable="false" />
           <Property Name="Description" Type="String" Nullable="false" />
           <Property Name="Price" Type="String" Nullable="false" />
           <Property Name="CreateAt" Type="String" Nullable="false" />
@@ -750,13 +750,13 @@
           <Property Name="Status" Type="String" Nullable="false" />
           <NavigationProperty Name="ImageItem" Relationship="Model1.ItemImageItem" FromRole="Item" ToRole="ImageItem" />
           <NavigationProperty Name="Category" Relationship="Model1.ItemCategory" FromRole="Item" ToRole="Category" />
-          <Property Name="IdInventory" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Buyout" Relationship="Model1.ProductBuyout" FromRole="Product" ToRole="Buyout" />
           <NavigationProperty Name="MovimientoInventory" Relationship="Model1.ProductMovimientoInventory" FromRole="Product" ToRole="MovimientoInventory" />
-          <NavigationProperty Name="Inventory" Relationship="Model1.ProductInventory" FromRole="Product" ToRole="Inventory" />
           <NavigationProperty Name="SaleDetail" Relationship="Model1.ProductSaleDetail" FromRole="Product" ToRole="SaleDetail" />
+          <NavigationProperty Name="Inventory" Relationship="Model1.InventoryProduct" FromRole="Product" ToRole="Inventory" />
+          <Property Name="IdInventory" Type="Int32" Nullable="false" />
         </EntityType>
-        <EntityType Name="ImageItem">
+        <EntityType Name="ImageProduct">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -779,8 +779,8 @@
           <Property Name="StockActual" Type="String" Nullable="false" />
           <Property Name="ZoneProduct" Type="String" Nullable="false" />
           <NavigationProperty Name="MovimientoItemInventory" Relationship="Model1.InventoryMovimientoItemInventory" FromRole="Inventory" ToRole="MovimientoItemInventory" />
-          <NavigationProperty Name="Product" Relationship="Model1.ProductInventory" FromRole="Inventory" ToRole="Product" />
           <Property Name="IdProduct" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Product" Relationship="Model1.InventoryProduct" FromRole="Inventory" ToRole="Product" />
         </EntityType>
         <EntityType Name="Category">
           <Key>
@@ -834,7 +834,7 @@
         </Association>
         <Association Name="ItemImageItem">
           <End Type="Model1.Product" Role="Item" Multiplicity="1" />
-          <End Type="Model1.ImageItem" Role="ImageItem" Multiplicity="1" />
+          <End Type="Model1.ImageProduct" Role="ImageItem" Multiplicity="1" />
         </Association>
         <Association Name="ItemCategory">
           <End Type="Model1.Product" Role="Item" Multiplicity="1" />
@@ -952,18 +952,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="ProductInventory">
-          <End Type="Model1.Product" Role="Product" Multiplicity="1" />
-          <End Type="Model1.Inventory" Role="Inventory" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Product">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Inventory">
-              <PropertyRef Name="IdProduct" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="Sale">
           <Key>
             <PropertyRef Name="Id" />
@@ -993,7 +981,6 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Quantity" Type="String" Nullable="false" />
-          <Property Name="Price" Type="String" Nullable="false" />
           <NavigationProperty Name="Sale" Relationship="Model1.SaleSaleDetail" FromRole="SaleDetail" ToRole="Sale" />
           <Property Name="IdSale" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Product" Relationship="Model1.ProductSaleDetail" FromRole="SaleDetail" ToRole="Product" />
@@ -1057,6 +1044,18 @@
             </Principal>
             <Dependent Role="User">
               <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="InventoryProduct">
+          <End Type="Model1.Inventory" Role="Inventory" Multiplicity="1" />
+          <End Type="Model1.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Inventory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="IdInventory" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1172,19 +1171,18 @@
       <EntityTypeMapping TypeName="IsTypeOf(Model1.Product)">
         <MappingFragment StoreEntitySet="Items">
           <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="NameItem" ColumnName="NameItem" />
+          <ScalarProperty Name="NameProduct" ColumnName="NameItem" />
           <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="Price" ColumnName="Price" />
           <ScalarProperty Name="CreateAt" ColumnName="CreateAt" />
           <ScalarProperty Name="DeleteAt" ColumnName="DeleteAt" />
           <ScalarProperty Name="UpdateAt" ColumnName="UpdateAt" />
           <ScalarProperty Name="Status" ColumnName="Status" />
-          <ScalarProperty Name="IdInventory" ColumnName="IdInventory" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="ImageItemSet">
-      <EntityTypeMapping TypeName="IsTypeOf(Model1.ImageItem)">
+    <EntitySetMapping Name="ImageProductSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.ImageProduct)">
         <MappingFragment StoreEntitySet="ImageItemSet">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="UrlImage" ColumnName="UrlImage" />
@@ -1258,7 +1256,6 @@
         <MappingFragment StoreEntitySet="SaleDetailSet">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-          <ScalarProperty Name="Price" ColumnName="Price" />
           <ScalarProperty Name="IdSale" ColumnName="IdSale" />
           <ScalarProperty Name="IdProduct" ColumnName="IdProduct" />
         </MappingFragment>

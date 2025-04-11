@@ -23,6 +23,6 @@ Partial Public Class Inventory
     Public Property IdProduct As Integer
 
     Public Overridable Property MovimientoItemInventory As ICollection(Of MovimientoInventory) = New HashSet(Of MovimientoInventory)
-    Public Overridable Property Product As Product
+    Public Overridable Property Product As ICollection(Of Product) = New HashSet(Of Product)
 
 End Class

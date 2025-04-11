@@ -1,8 +1,4 @@
-﻿using Entity;
-using Entity.Contexts;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using Entity.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Entity.Model;

@@ -2,7 +2,6 @@
 using Entity.DTOs;
 using Entity.Model;
 using Microsoft.Extensions.Logging;
-using System.ComponentModel.DataAnnotations;
 using Utilities.Exceptions;
 
 namespace Business
@@ -42,7 +41,7 @@ namespace Business
             if (id <= 0)
             {
                 _logger.LogWarning("Se intentó obtener un usuario con ID inválido: {UserId}", id);
-                throw new Utilities.Exceptions.ValidationException("id", "El ID del usuario debe ser mayor que cero");
+                throw new ValidationException("id", "El ID del usuario debe ser mayor que cero");
             }
 
             try
@@ -63,7 +62,30 @@ namespace Business
             }
         }
 
-        // Método para crear un usuario desde un DTO
+        // Método para obtener una lista de los usuarios por el nombre rol
+        public async Task<IEnumerable<User>> GetUsersByRolNameAsync(string rolName)
+        {
+            if (string.IsNullOrWhiteSpace(rolName))
+                throw new ValidationException("Rol", "El nombre del rol no puede estar vacío.");
+
+            try
+            {
+                var users = await _userData.GetByRolNameAsync(rolName);
+
+                if (!users.Any())
+                    _logger.LogWarning($"No se encontraron usuarios con el rol '{rolName}'");
+
+                return users;
+            }
+            
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Error a obener usuarios con el rol '{rolName}'");
+                throw new ExternalServiceException("Base de datos", $"Error al recuperar los usuarios con el rol '{rolName}'", ex);
+            }
+        }
+
+        // Updated code to handle potential null reference for "UserCreado" before calling MapToDTO
         public async Task<UserDTO> CreateUserAsync(UserDTO userDTO)
         {
             try
@@ -73,6 +95,12 @@ namespace Business
                 var User = MapToEntity(userDTO);
 
                 var UserCreado = await _userData.CreateAsync(User);
+
+                if (UserCreado == null)
+                {
+                    _logger.LogWarning("El usuario creado es nulo.");
+                    throw new ExternalServiceException("Base de datos", "Error al crear el usuario, el resultado fue nulo.");
+                }
 
                 return MapToDTO(UserCreado);
             }
@@ -88,19 +116,19 @@ namespace Business
         {
             if (userDto == null)
             {
-                throw new Utilities.Exceptions.ValidationException("El objeto usuario no puede ser nulo");
+                throw new ValidationException("El objeto usuario no puede ser nulo");
             }
 
             if (string.IsNullOrWhiteSpace(userDto.UserName))
             {
                 _logger.LogWarning("Se intentó crear/actualizar un usuario con Name vacío");
-                throw new Utilities.Exceptions.ValidationException("Nombre", "El nombre del usuario es obligatorio");
+                throw new ValidationException("Nombre", "El nombre del usuario es obligatorio");
             }
 
             if (string.IsNullOrWhiteSpace(userDto.Password))
             {
                 _logger.LogWarning("Se intentó crear/actualizar un usuario con contraseña vacío");
-                throw new Utilities.Exceptions.ValidationException("Password", "La contraseña del usuario es obligatorio");
+                throw new ValidationException("Password", "La contraseña del usuario es obligatorio");
             }
         }
 

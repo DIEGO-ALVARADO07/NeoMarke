@@ -3,7 +3,6 @@ using Entity.DTOs;
 using Entity.Enum;
 using Entity.Model;
 using Microsoft.Extensions.Logging;
-using System.ComponentModel.DataAnnotations;
 using Utilities.Exceptions;
 
 namespace Business
@@ -14,9 +13,9 @@ namespace Business
     public class RolFormBusiness
     {
         private readonly RolFormData _rolFormData;
-        private readonly ILogger _logger;
+        private readonly ILogger<RolFormBusiness> _logger;
 
-        public RolFormBusiness(RolFormData rolFormData, ILogger logger)
+        public RolFormBusiness(RolFormData rolFormData, ILogger<RolFormBusiness> logger)
         {
             _rolFormData = rolFormData;
             _logger = logger;
@@ -75,6 +74,12 @@ namespace Business
 
                 var rolFormCreado = await _rolFormData.CreateAsync(rolForm);
 
+                if (rolFormCreado == null)
+                {
+                    _logger.LogWarning("El rol de formulario creado es nulo.");
+                    throw new ExternalServiceException("Base de datos", "El rol de formulario creado es nulo.");
+                }
+
                 return MapToDTO(rolFormCreado);
             }
             catch (Exception ex)
@@ -82,6 +87,50 @@ namespace Business
                 _logger.LogError(ex, "Error al crear nuevo rol de formulario: {Name}", rolFormDto?.Permision.ToString() ?? "null");
 
                 throw new ExternalServiceException("Base de datos", "Error al crear el rol de formulario", ex);
+            }
+        }
+
+        // Método para actualizar un rol de formulario
+        public async Task<RolFormDTO> UpdateRolFormAsync(RolFormDTO rolFormDto)
+        {
+            try
+            {
+                ValidateRolForm(rolFormDto);
+
+                var existing = await _rolFormData.GetByIdAsync(rolFormDto.Id);
+                if (existing == null)
+                    throw new EntityNotFoundException("rolForm", rolFormDto.Id);
+
+                var updated = MapToEntity(rolFormDto);
+                var success = await _rolFormData.UpdateAsync(updated);
+
+                if (!success)
+                    throw new ExternalServiceException("Base de datos", "No se pudo actualizar el rol de formulario");
+
+                return rolFormDto;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error al actualizar el rol de formulario con ID: {Id}", rolFormDto?.Id);
+                throw;
+            }
+        }
+
+        // Método para eliminar un rol de formulario por ID
+        public async Task<bool> DeleteRolFormByIdAsync(int id)
+        {
+            try
+            {
+                var exists = await _rolFormData.GetByIdAsync(id);
+                if (exists == null)
+                    throw new EntityNotFoundException("rolForm", id);
+
+                return await _rolFormData.DeleteAsync(id);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error al eliminar el rol de formulario con ID: {Id}", id);
+                throw;
             }
         }
 
@@ -128,12 +177,7 @@ namespace Business
         // Método para mapear una lista de RolForm a una lista de RolFormDto
         private IEnumerable<RolFormDTO> MapToDTOList(IEnumerable<RolForm> rolForms)
         {
-            var rolFormsDTO = new List<RolFormDTO>();
-            foreach (var rolForm in rolForms)
-            {
-                rolFormsDTO.Add(MapToDTO(rolForm));
-            }
-            return rolFormsDTO;
+            return rolForms.Select(MapToDTO).ToList();
         }
     }
 }

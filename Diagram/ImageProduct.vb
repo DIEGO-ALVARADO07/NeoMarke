@@ -10,7 +10,7 @@
 Imports System
 Imports System.Collections.Generic
 
-Partial Public Class ImageItem
+Partial Public Class ImageProduct
     Public Property Id As Integer
     Public Property UrlImage As String
     Public Property IdProduct As String

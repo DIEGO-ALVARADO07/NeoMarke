@@ -1,10 +1,7 @@
 ﻿using Entity.Model;
 using Entity.Contexts;
-using System;
-using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using System.Threading.Tasks;
 
 
 namespace Data
@@ -52,6 +49,23 @@ namespace Data
             catch (Exception ex)
             {
                 _logger.LogError($"Error al obtener el usuario con ID {id}: {ex.Message}");
+                throw;
+            }
+        }
+
+        // Obtener un usuario por nombre de Rol
+        public async Task<IEnumerable<User>> GetByRolNameAsync(string rolName)
+        {
+            try
+            {
+                return await _context.Users
+                    .Include(u => u.Rol) // Asegura la relación con la tabla Rol
+                    .Where(u => u.Rol.Name == rolName)
+                    .ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error al obtener usuarios con el rol '{rolName}': {ex.Message}");
                 throw;
             }
         }

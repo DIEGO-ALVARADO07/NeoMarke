@@ -80,7 +80,7 @@
     <Compile Include="Form.vb">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="ImageItem.vb">
+    <Compile Include="ImageProduct.vb">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Inventory.vb">

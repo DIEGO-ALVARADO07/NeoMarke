@@ -1,10 +1,7 @@
 ﻿using Entity.Model;
 using Entity.Contexts;
-using System;
-using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using System.Threading.Tasks;
 
 namespace Data
 {

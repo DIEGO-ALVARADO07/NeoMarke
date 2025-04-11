@@ -14,6 +14,6 @@
         public DateTime DeletedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
         public int IdUser { get; set; }
-        public ICollection<User> Users { get; set; } = new List<User>(); // <- propiedad correcta
+        public ICollection<User> Users { get; set; } // <- propiedad correcta
     }
 }

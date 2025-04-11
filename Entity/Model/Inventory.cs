@@ -19,6 +19,8 @@ namespace Entity.Model
         public DateTime UpdatedAt { get; set; }
         public int IdUser { get; set; }
         public required User User { get; set; }
+        public int IdMovementInventory { get; set; }
+        public ICollection<MovementInventory> MovementInventory { get; set; } // <- propiedad correcta   
 
 
     }

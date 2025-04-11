@@ -13,7 +13,6 @@ Imports System.Collections.Generic
 Partial Public Class SaleDetail
     Public Property Id As Integer
     Public Property Quantity As String
-    Public Property Price As String
     Public Property IdSale As Integer
     Public Property IdProduct As Integer
 

@@ -18,7 +18,7 @@ namespace Data
         }
 
         // Crear un nuevo movimiento de inventario
-        public async Task<MovementInventory?> CreateAsync(MovementInventory movementInventory)
+        public async Task<MovementInventory> CreateAsync(MovementInventory movementInventory)
         {
             try
             {
@@ -40,7 +40,7 @@ namespace Data
         }
 
         // Obtener un movimiento de inventario por ID
-        public async Task<MovementInventory?> GetByIdAsync(int id)
+        public async Task<MovementInventory> GetByMovementInventoryIdAsync(int id)
         {
             try
             {
@@ -54,7 +54,7 @@ namespace Data
         }
 
         // Actualizar un movimiento de inventario
-        public async Task<bool> UpdateAsync(MovementInventory movementInventory)
+        public async Task<bool> UpdateMovementInventoryAsync(MovementInventory movementInventory)
         {
             try
             {
@@ -70,7 +70,7 @@ namespace Data
         }
 
         // Eliminar un movimiento de inventario por ID
-        public async Task<bool> DeleteAsync(int id)
+        public async Task<bool> DeleteMovementInventaryAsync(int id)
         {
             try
             {

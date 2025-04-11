@@ -9,12 +9,12 @@ namespace Business
     /// <summary>
     /// Clase de negocio encargada de la lógica relacionada con los formularios del sistema.
     /// </summary>
-    public class FormBusniess
+    public class FormBusiness
     {
         private readonly FormData _formData;
         private readonly ILogger _logger;
 
-        public FormBusniess(FormData formData, ILogger logger)
+        public FormBusiness(FormData formData, ILogger logger)
         {
             _formData = formData;
             _logger = logger;
@@ -72,6 +72,12 @@ namespace Business
                 var Form = MapToEntity(formDTO);
                 var FormCreado = await _formData.CreateAsync(Form);
 
+                if (FormCreado == null)
+                {
+                    _logger.LogError("El formulario creado es nulo.");
+                    throw new ExternalServiceException("Base de datos", "Error al crear el formulario, el resultado es nulo.");
+                }
+
                 return MapToDTO(FormCreado);
             }
             catch (Exception ex)
@@ -88,6 +94,12 @@ namespace Business
                 if (formDto == null)
                 {
                     throw new ValidationException("El objeto sede no puede ser nulo");
+                }
+
+                if (string.IsNullOrWhiteSpace(formDto.Id))
+                {
+                    _logger.LogWarning("Se intentó crear/actualizar una sede con Id vacío");
+                    throw new ValidationException("Name", "El Name de la sede es obligatorio");
                 }
 
                 if (string.IsNullOrWhiteSpace(formDto.NameForm))

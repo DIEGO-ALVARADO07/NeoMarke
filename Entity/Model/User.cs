@@ -11,10 +11,14 @@
         public int IdPerson { get; set; }
         public Person Person { get; set; }
         public int IdRol { get; set; }
-        public Rol Rol { get; set; }
+        public Rol Rol { get; set; } 
         public int IdCompany { get; set; }
         public Company Company { get; set; }
         public int IdNotification { get; set; }
-        public Notification Notification { get; set; }  
+        public ICollection<Notification> Notification { get; set; } // <- propiedad correcta
+        public int IdSale { get; set; }
+        public ICollection<Sale> Sale { get; set; } // <- propiedad correcta
+        public int IdMovementInventory { get; set; }
+        public ICollection<MovementInventory> MovementInventory { get; set; } // <- propiedad correcta
     }
 }

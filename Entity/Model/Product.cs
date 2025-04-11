@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Entity.Model
+﻿namespace Entity.Model
 {
     public class Product
     {
@@ -17,10 +11,14 @@ namespace Entity.Model
         public DateTime UpdateAt { get; set; }
         public bool Status { get; set; }
         public int IdInventory { get; set; }
-        public required Inventory Inventory { get; set; }
+        public Inventory Inventory { get; set; }
         public int IdCategory { get; set; }
-        public required Category Category { get; set; }
+        public Category Category { get; set; }
         public int IdImageItem { get; set; }
-        public required ImageItem ImageItems { get; set; }
+        public ImageItem ImageItems { get; set; }
+        public int IdMovementInventory { get; set; }
+        public ICollection<MovementInventory> MovementInventory { get; set; } // <- propiedad correcta
+        public int IdSaleDetail { get; set; }
+        public ICollection<SaleDetail> SaleDetail { get; set; } // <- propiedad correcta
     }
 }

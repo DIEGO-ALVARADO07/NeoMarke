@@ -12,12 +12,12 @@ namespace Business
     /// <summary>
     /// Clase de negocio encargada de la lógica relacionada con las personas del sistema.
     /// </summary>
-    public class PersonBusniess
+    public class PersonBusiness
     {
         private readonly PersonData _personData;
         private readonly ILogger _logger;
 
-        public PersonBusniess(PersonData personData, ILogger logger)
+        public PersonBusiness(PersonData personData, ILogger logger)
         {
             _personData = personData;
             _logger = logger;
@@ -75,6 +75,12 @@ namespace Business
                 var Person = MapToEntity(personDTO);
 
                 var PersonCreado = await _personData.CreateAsync(Person);
+
+                if (PersonCreado == null)
+                {
+                    _logger.LogError("El método CreateAsync devolvió un valor nulo para el usuario: {FirstName}", personDTO?.FirstName ?? "null");
+                    throw new ExternalServiceException("Base de datos", "Error al crear el usuario, el resultado fue nulo");
+                }
 
                 return MapToDTO(PersonCreado);
             }

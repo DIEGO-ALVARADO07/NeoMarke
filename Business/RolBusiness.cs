@@ -62,7 +62,7 @@ public class RolBusiness
         }
     }
 
-    // Método para crear un rol desde un DTO
+    // Updated method to handle potential null reference for "rolCreado"
     public async Task<RolDTO> CreateRolAsync(RolDTO RolDto)
     {
         try
@@ -72,6 +72,14 @@ public class RolBusiness
             var rol = MapToEntity(RolDto);
 
             var rolCreado = await _rolData.CreateAsync(rol);
+
+            // Ensure "rolCreado" is not null before mapping
+            if (rolCreado == null)
+            {
+                _logger.LogError("El rol creado es nulo.");
+                throw new ExternalServiceException("Base de datos", "Error al crear el rol: el resultado es nulo.");
+            }
+
             return MapToDTO(rolCreado);
         }
         catch (Exception ex)

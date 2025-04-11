@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Entity.DTOs
+﻿namespace Entity.DTOs
 {
     public class ProductDTO
     {
@@ -12,8 +6,8 @@ namespace Entity.DTOs
         public string NameItem { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
         public int Price { get; set; }
-        public string UrlImage { get; set; } = string.Empty;
-        public string NameInventory { get; set; } = string.Empty;
+        public int IdImageProduct { get; set; }
+        public int IdInventory { get; set; }
         public bool Status { get; set; }
     }
 }

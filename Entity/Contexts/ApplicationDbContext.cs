@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Configuration;
 using System.Data;
 using System.Reflection;
-using System.Reflection.Emit;
+
 
 namespace Entity.Contexts
 {
@@ -40,6 +40,13 @@ namespace Entity.Contexts
             base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
+
+
+            /*
+             * Conversión de tipos de datos Enum a string
+            */
+
+
             // Conversión enum a string para el tipo de notificación
             modelBuilder.Entity<Notification>()
 
@@ -64,34 +71,107 @@ namespace Entity.Contexts
                 .HasConversion<string>();
 
 
-            // Metodos Relaciones entre tablas de Personas con Usuarios
+
+            /*
+             * Relaciones entre entidades
+            */
+
+            // Metodos Relaciones entre tablas: Roles con Formularios
+            modelBuilder.Entity<RolForm>()
+                .HasOne(rf => rf.Rol)
+                .WithMany(r => r.RolForm)
+                .HasForeignKey(rf => rf.IdRol)
+            .OnDelete(DeleteBehavior.Cascade);
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
+            // Metodos Relaciones entre tablas: Formularios con Roles
+            modelBuilder.Entity<RolForm>()
+                .HasOne(rf => rf.Form)
+                .WithMany(f => f.RolForm)
+                .HasForeignKey(rf => rf.IdForm)
+                .OnDelete(DeleteBehavior.Cascade);
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
+
+            // Metodos Relaciones entre tablas: Personas con Usuarios
             modelBuilder.Entity<Person>()
                .HasOne(p => p.User)
                .WithOne(u => u.Person)
-               .HasForeignKey<User>(u => u.IdPerson); // Especifica la clave foránea
+               .HasForeignKey<User>(u => u.IdPerson) // Especifica la clave foránea
+            .OnDelete(DeleteBehavior.Cascade);
             base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
 
-            /* Metodos de User 
-            // Metodos Relaciones entre tablas de Usuarios con Roles
-            */
+            // Metodos Relaciones entre tablas: Usuarios con Roles
             modelBuilder.Entity<User>()
+
                .HasOne(p => p.Rol)
                .WithOne(u => u.User)
-               .HasForeignKey<User>(u => u.IdRol); // Especifica la clave foránea
+               .HasForeignKey<User>(u => u.IdRol) // Especifica la clave foránea
+               .OnDelete(DeleteBehavior.Cascade);
             base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
-            // Metodo Relaciones entre tablas de Usuarios con Empresas
+            // Metodo Relaciones entre tablas: Usuarios con Empresas
             modelBuilder.Entity<User>()
                .HasOne(p => p.Company)
                .WithMany(u => u.Users)
-               .HasForeignKey(u => u.IdCompany); // Especifica la clave foránea
-               base.OnModelCreating(modelBuilder);
-               modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+               .HasForeignKey(u => u.IdCompany) // Especifica la clave foránea
+               .OnDelete(DeleteBehavior.Cascade);
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
+            // Metodo Relaciones entre tablas: Las Notificaiones que puede tener un Usuario
+            modelBuilder.Entity<Notification>()
+                .HasOne(p => p.User)
+                .WithMany(u => u.Notification)
+                .HasForeignKey(u => u.IdUser) // Especifica la clave foránea 
+                .OnDelete(DeleteBehavior.Cascade);
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
+            // Metodo Relaciones entre tablas: Las Ventas que puede tener un Usuario, Solo para el caso de que el usuario sea el Administrador/Vendedor
+            modelBuilder.Entity<Sale>()
+                .HasOne(p => p.User)
+                .WithMany(u => u.Sale)
+                .HasForeignKey(u => u.IdUser) // Especifica la clave foránea
+                .OnDelete(DeleteBehavior.Cascade);
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
+            // Metodo Relaciones entre tablas: Las Notificaiones que puede tener un Usuario
+            modelBuilder.Entity<Notification>()
+                .HasOne(p => p.User)
+                .WithMany(u => u.Notification)
+                .HasForeignKey(u => u.IdUser) // Especifica la clave foránea 
+                .OnDelete(DeleteBehavior.Cascade);
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
+            // Metodo Relaciones entre tablas: Los Movimientos de Inventario que puede tener un Usuario(Administrador)
+            modelBuilder.Entity<MovementInventory>()
+                .HasOne(p => p.User)
+                .WithMany(u => u.MovementInventory)
+                .HasForeignKey(u => u.IdUser) // Especifica la clave foránea 
+                .OnDelete(DeleteBehavior.Cascade);
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
+            // Metodo Relaciones entre tablas: Los Movimientos de Inventario que puede tener un Inventario
+            modelBuilder.Entity<MovementInventory>()
+                .HasOne(p => p.Inventory)
+                .WithMany(u => u.MovementInventory)
+                .HasForeignKey(u => u.IdInventory) // Especifica la clave foránea 
+                .OnDelete(DeleteBehavior.Cascade);
+            base.OnModelCreating(modelBuilder); 
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());  
         }
 
+        public DbSet<Sale> Sale { get; set; }
+        public DbSet<SaleDetail> SaleDetail { get; set; }
 
         /// <summary>
         /// Configura opciones adicionales del contexto, como el registro de datos sensibles.
@@ -211,7 +291,8 @@ namespace Entity.Contexts
 
             /// <summary>
             /// Método para liberar los recursos.
-            /// </summary>
+            /// </summary
+            
             public void Dispose()
             {
             }

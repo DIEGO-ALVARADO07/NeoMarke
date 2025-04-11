@@ -12,7 +12,7 @@ Imports System.Collections.Generic
 
 Partial Public Class Product
     Public Property Id As Integer
-    Public Property NameItem As String
+    Public Property NameProduct As String
     Public Property Description As String
     Public Property Price As String
     Public Property CreateAt As String
@@ -21,11 +21,11 @@ Partial Public Class Product
     Public Property Status As String
     Public Property IdInventory As Integer
 
-    Public Overridable Property ImageItem As ImageItem
+    Public Overridable Property ImageItem As ImageProduct
     Public Overridable Property Category As Category
     Public Overridable Property Buyout As ICollection(Of Buyout) = New HashSet(Of Buyout)
     Public Overridable Property MovimientoInventory As ICollection(Of MovimientoInventory) = New HashSet(Of MovimientoInventory)
-    Public Overridable Property Inventory As ICollection(Of Inventory) = New HashSet(Of Inventory)
     Public Overridable Property SaleDetail As ICollection(Of SaleDetail) = New HashSet(Of SaleDetail)
+    Public Overridable Property Inventory As Inventory
 
 End Class
